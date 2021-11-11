@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    var emojis = ["🚗", "🚕", "🚙", "🚌", "🚎", "🏎", "🚓", "🚑", "🚒", "🚐", "🛻", "🚚", "🚛", "🚜", "🚘", "🚖", "🚁", "🛳", "⛴", "🚢", "🚤", "🛥", "🛸", "💺", "🚉", "🛩", "🚊", "✈️", "🛫", "🛬", "🚇", "🚆"]
+    @State var emojis = ["🚗", "🚕", "🚙", "🚌", "🚎", "🏎", "🚓", "🚑", "🚒", "🚐", "🛻", "🚚", "🚛", "🚜", "🚘", "🚖", "🚁", "🛳", "⛴", "🚢", "🚤", "🛥", "🛸", "💺", "🚉", "🛩", "🚊", "✈️", "🛫", "🛬", "🚇", "🚆"]
+    
+    var vehicleEmojis = ["🚗", "🚕", "🚙", "🚌", "🚎", "🏎", "🚓", "🚑", "🚒", "🚐", "🛻", "🚚", "🚛", "🚜", "🚘", "🚖", "🚁", "🛳", "⛴", "🚢", "🚤", "🛥", "🛸", "💺", "🚉", "🛩", "🚊", "✈️", "🛫", "🛬", "🚇", "🚆"]
+    
+    var objectEmojis = ["⌚️", "📱", "💻", "⌨️", "🖨", "🖲", "🕹", "💽", "💾", "💿", "📀", "📼", "📷", "📸", "📹", "🎥", "📽", "🎞", "📞", "☎️", "📟", "📠", "📺", "💰", "💳", "💎", "⚖️", "🪜", "🧰", "🪛", "🔧"]
+    
+    var activityEmojis = ["⚽️", "🏀", "🏈", "⚾️", "🥎", "🏐", "🏉", "🥏", "🎱", "🪀", "🏓", "🏸", "🏒", "🤿", "🏹", "🥊", "🎽", "🛼", "🪂", "⛷", "🥌", "⛸", "🏌️", "🏄‍♂️", "🚣‍♂️", "🚵‍♀️", "🚴🏼‍♀️"]
+    
     @State var emojiCount = 20
     
     
     var body: some View {
         VStack {
             ScrollView {
+                Text("Memorize!")
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
                     ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
                         CardView(content: emoji)
@@ -23,19 +31,61 @@ struct ContentView: View {
                 }
             }
             .foregroundColor(.red)
+            .font(.largeTitle)
             Spacer()
             HStack {
-                remove
+                
+                vehicleTheme
                 Spacer()
-                add
+                objectTheme
+                Spacer()
+                activityTheme
             }
             .font(.largeTitle)
             .padding(.horizontal)
             
         }
-        .padding(.horizontal)
+        .padding()
         
     }
+    
+    var vehicleTheme: some View {
+        Button {
+            emojis = vehicleEmojis.shuffled()
+            emojiCount = 12
+        } label: {
+            VStack {
+                Image(systemName: "car.fill")
+                Text("Vehicles").font(.body)
+            }.font(.largeTitle)
+        }
+    }
+    
+    var objectTheme: some View {
+        Button {
+            emojis = objectEmojis.shuffled()
+            emojiCount = 8
+        } label: {
+            VStack {
+                Image(systemName: "pencil.slash")
+                Text("Objects").font(.body)
+            }
+        }
+    }
+    
+    var activityTheme: some View {
+        Button {
+            emojis = activityEmojis.shuffled()
+            emojiCount = 16
+        } label: {
+            VStack {
+                Image(systemName: "heart.fill")
+                Text("Activities").font(.body)
+            }
+        }
+
+    }
+    
     
     var remove: some View {
         Button {
@@ -86,5 +136,8 @@ struct CardView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+        
     }
+    
+    
 }
