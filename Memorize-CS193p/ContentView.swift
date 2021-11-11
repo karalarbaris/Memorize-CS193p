@@ -16,9 +16,8 @@ struct ContentView: View {
     
     var activityEmojis = ["⚽️", "🏀", "🏈", "⚾️", "🥎", "🏐", "🏉", "🥏", "🎱", "🪀", "🏓", "🏸", "🏒", "🤿", "🏹", "🥊", "🎽", "🛼", "🪂", "⛷", "🥌", "⛸", "🏌️", "🏄‍♂️", "🚣‍♂️", "🚵‍♀️", "🚴🏼‍♀️"]
     
-    @State var emojiCount = 20
-    
-    
+    @State var emojiCount =  Int.random(in: 4...25)
+        
     var body: some View {
         VStack {
             ScrollView {
@@ -52,7 +51,7 @@ struct ContentView: View {
     var vehicleTheme: some View {
         Button {
             emojis = vehicleEmojis.shuffled()
-            emojiCount = 12
+            emojiCount = Int.random(in: 4...25)
         } label: {
             VStack {
                 Image(systemName: "car.fill")
@@ -64,7 +63,7 @@ struct ContentView: View {
     var objectTheme: some View {
         Button {
             emojis = objectEmojis.shuffled()
-            emojiCount = 8
+            emojiCount = Int.random(in: 4...25)
         } label: {
             VStack {
                 Image(systemName: "pencil.slash")
@@ -76,7 +75,7 @@ struct ContentView: View {
     var activityTheme: some View {
         Button {
             emojis = activityEmojis.shuffled()
-            emojiCount = 16
+            emojiCount = Int.random(in: 4...25)
         } label: {
             VStack {
                 Image(systemName: "heart.fill")
@@ -136,8 +135,5 @@ struct CardView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-        
     }
-    
-    
 }
